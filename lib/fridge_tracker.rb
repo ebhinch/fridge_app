@@ -57,6 +57,19 @@ def add_food_to_fridge()
     puts "You've added a #{new_food.name} to fridge #{fridge_to_add_to}"
 end
 
+def eat_a_food ()
+    puts "Which fridge would you like a snack from? Please enter the corresonding ID from below list"
+    show_all_fridges
+    fridge_to_open = gets.chomp.to_i
+    food_list = Food.where("fridge_id = #{fridge_to_open}")
+    food_list.each do |food|
+        puts "#{food.name} #{food.id}"
+    end
+    puts "Which food would you like to eat? Please enter ID below"
+    food_to_eat = gets.chomp.to_i
+    snack = Food.find(food_to_eat).destroy
+    puts "You've eaten #{snack}"
+end
 
 my_str = %q(
     Welcome to the Fridge Tracker
@@ -88,17 +101,7 @@ if user_descision == 1
             view_food_in_fridge
         elsif user_descision == 5
             add_food_to_fridge
+        elsif user_descision == 6
+            eat_a_food
     end
     
-
-
-
-# puts Fridge.all
-
-# Fridge.create(
-#     location: "office", 
-#     brand: "whirlpool", 
-#     size:250, 
-#     has_food: false, 
-#     has_drink:false
-#     )
