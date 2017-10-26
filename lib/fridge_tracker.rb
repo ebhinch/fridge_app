@@ -43,7 +43,18 @@ def view_food_in_fridge()
             food_list.each do |food|
                 puts food.name
             end
-        
+end
+
+def add_food_to_fridge()
+    puts "Which refrigerator would you like to add a food to? Please enter the corresonding ID from below list"
+    show_all_fridges
+    fridge_to_add_to = gets.chomp.to_i
+    puts "Name: "
+    added_food_name = gets.chomp
+    puts "Weight (in pounds): "
+    added_food_weight = gets.chomp
+    new_food = Food.create(name: added_food_name, weight: added_food_weight, fridge_id: fridge_to_add_to)
+    puts "You've added a #{new_food.name} to fridge #{fridge_to_add_to}"
 end
 
 
@@ -54,11 +65,12 @@ my_str = %q(
         2. Add a Fridge
         3. Delete a Fridge
         4. View food in a specific fridge
-        5. Eat a food item from a fridge
-        6. View all drink items in a specific fridge
-        7. Add a drink to a specific fridge
-        8. Drink part of a drink
-        9. Drink an entire drink
+        5. Add a food item to a fridge
+        6. Eat a food item from a fridge
+        7. View all drink items in a specific fridge
+        8. Add a drink to a specific fridge
+        9. Drink part of a drink
+        10. Drink an entire drink
         Select a number: 
 )
 
@@ -74,6 +86,8 @@ if user_descision == 1
         delete_fridge
         elsif user_descision == 4
             view_food_in_fridge
+        elsif user_descision == 5
+            add_food_to_fridge
     end
     
 
