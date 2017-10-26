@@ -34,12 +34,31 @@ def delete_fridge()
 end
 
 
+def view_food_in_fridge()
+    puts "See the food in a fridge. Which fridge do you want to look in? Please enter the corresponding ID from below list"
+        show_all_fridges
+        fridge_to_see = gets.chomp.to_i
+        
+        food_list = Food.where("fridge_id = #{fridge_to_see}")
+            food_list.each do |food|
+                puts food.name
+            end
+        
+end
+
+
 my_str = %q(
     Welcome to the Fridge Tracker
     What would you like to do?  
         1. List all Fridges
         2. Add a Fridge
         3. Delete a Fridge
+        4. View food in a specific fridge
+        5. Eat a food item from a fridge
+        6. View all drink items in a specific fridge
+        7. Add a drink to a specific fridge
+        8. Drink part of a drink
+        9. Drink an entire drink
         Select a number: 
 )
 
@@ -53,6 +72,8 @@ if user_descision == 1
         add_fridge
     elsif user_descision == 3
         delete_fridge
+        elsif user_descision == 4
+            view_food_in_fridge
     end
     
 
