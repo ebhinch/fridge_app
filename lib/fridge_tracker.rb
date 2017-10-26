@@ -45,6 +45,16 @@ def view_food_in_fridge()
             end
 end
 
+def view_drinks_in_fridge()
+    puts "See the drinks in a fridge. Which fridge do you want to look in? Please enter the corresponding ID from below list"
+        show_all_fridges
+        fridge_to_see = gets.chomp.to_i
+        drink_list = Drink.where("fridge_id = #{fridge_to_see}")
+            drink_list.each do |drink|
+                puts drink.name
+            end
+end
+
 def add_food_to_fridge()
     puts "Which refrigerator would you like to add a food to? Please enter the corresonding ID from below list"
     show_all_fridges
@@ -103,5 +113,7 @@ if user_descision == 1
             add_food_to_fridge
         elsif user_descision == 6
             eat_a_food
+        elsif user_descision == 7
+            view_drinks_in_fridge
     end
     
