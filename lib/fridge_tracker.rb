@@ -97,6 +97,20 @@ def drink_part_of_drink()
     puts drink_size.size
 end 
 
+def drink_whole_drink()
+    puts "Which fridge would you like a sip from? Please enter the corresonding ID from below list"
+    show_all_fridges
+    fridge_to_open = gets.chomp.to_i
+    drink_list = Drink.where("fridge_id = #{fridge_to_open}")
+    drink_list.each do |drink|
+        puts "#{drink.name} #{drink.id}"
+    end
+    puts "Which drink would you like to drink? Enter ID"
+    drink_to_drink = gets.chomp.to_i
+    Drink.find(drink_to_drink).destroy
+    puts "You've drunk all of #{drink_to_drink}"
+end
+
     
 
 my_str = %q(
@@ -135,5 +149,7 @@ if user_descision == 1
             view_drinks_in_fridge
         elsif user_descision == 9
             drink_part_of_drink
+        elsif user_descision == 10
+            drink_whole_drink
     end
     
