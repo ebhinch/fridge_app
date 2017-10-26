@@ -81,6 +81,24 @@ def eat_a_food ()
     puts "You've eaten #{snack}"
 end
 
+def drink_part_of_drink()
+    puts "Which fridge would you like a sip from? Please enter the corresonding ID from below list"
+    show_all_fridges
+    fridge_to_open = gets.chomp.to_i
+
+    drink_list = Drink.where("fridge_id = #{fridge_to_open}")
+    drink_list.each do |drink|
+        puts "#{drink.name} #{drink.id}"
+    end
+    puts "Which drink would you like to taste? Enter ID"
+    drink_to_try = gets.chomp.to_i
+    drink_size = Drink.find(drink_to_try)
+    drink_size.update(size: 10)
+    puts drink_size.size
+end 
+
+    
+
 my_str = %q(
     Welcome to the Fridge Tracker
     What would you like to do?  
@@ -105,15 +123,17 @@ if user_descision == 1
     show_all_fridges
     elsif user_descision == 2
         add_fridge
-    elsif user_descision == 3
-        delete_fridge
-        elsif user_descision == 4
-            view_food_in_fridge
-        elsif user_descision == 5
-            add_food_to_fridge
-        elsif user_descision == 6
-            eat_a_food
-        elsif user_descision == 7
+        elsif user_descision == 3
+            delete_fridge
+            elsif user_descision == 4
+                view_food_in_fridge
+            elsif user_descision == 5
+                add_food_to_fridge
+            elsif user_descision == 6
+                eat_a_food
+                elsif user_descision == 7
             view_drinks_in_fridge
+        elsif user_descision == 9
+            drink_part_of_drink
     end
     
