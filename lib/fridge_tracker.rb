@@ -6,7 +6,7 @@ puts "test"
 def show_all_fridges
 fridges = Fridge.all
     fridges.each do |fridge|
-        puts "this #{fridge.brand} fridge is in the #{fridge.location}."
+        puts "this #{fridge.brand} fridge is in the #{fridge.location}. This fridge's id is #{fridge.id}"
     end
 end
 
@@ -23,6 +23,14 @@ def add_fridge ()
     has_drink = gets.chomp
     new_fridge = Fridge.create(location: location, brand: brand, size: size, has_food: has_food, has_drink: has_drink)
     puts new_fridge
+end
+
+def delete_fridge()
+    puts "Which fridge do you want to delete? Please enter the corresponding ID from below list"
+        show_all_fridges
+        delete_id = gets.chomp
+        Fridge.find(delete_id).destroy
+        puts "Fridge #{delete_id} has been deleted"
 end
 
 
@@ -43,6 +51,8 @@ if user_descision == 1
     show_all_fridges
     elsif user_descision == 2
         add_fridge
+    elsif user_descision == 3
+        delete_fridge
     end
     
 
