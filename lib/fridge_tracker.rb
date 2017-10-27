@@ -27,10 +27,10 @@ end
 
 def delete_fridge()
     puts "Which fridge do you want to delete? Please enter the corresponding ID from below list"
-        show_all_fridges
-        delete_id = gets.chomp
-        Fridge.find(delete_id).destroy
-        puts "Fridge #{delete_id} has been deleted"
+    show_all_fridges
+    delete_id = gets.chomp
+    Fridge.find(delete_id).destroy
+    puts "Fridge #{delete_id} has been deleted"
 end
 
 
@@ -106,8 +106,9 @@ def drink_part_of_drink()
     puts "Which drink would you like to taste? Enter ID"
     drink_to_try = gets.chomp.to_i
     drink_size = Drink.find(drink_to_try)
-    drink_size.update(size: 10)
-    puts drink_size.size
+    ounces_left_to_drink = (drink_size.size - 5).to_f
+    # drink_size.update(size: 10)
+    puts ounces_left_to_drink
 end 
 
 def drink_whole_drink()
