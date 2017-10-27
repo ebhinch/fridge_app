@@ -67,6 +67,19 @@ def add_food_to_fridge()
     puts "You've added a #{new_food.name} to fridge #{fridge_to_add_to}"
 end
 
+def add_drink_to_fridge()
+    puts "Which refrigerator would you like to add a drink to? Please enter the corresponding ID from list below."
+    show_all_fridges
+    fridge_to_add_to = gets.chomp.to_i
+    puts "Name: "
+    added_drink_name = gets.chomp
+    puts "Size (in ounces): "
+    added_drink_size = gets.chomp
+    new_drink = Drink.create(name: added_drink_name, size: added_drink_size, fridge_id: fridge_to_add_to)
+    puts "Youve added a new #{new_drink.name} to fridge #{fridge_to_add_to}"
+end 
+
+
 def eat_a_food ()
     puts "Which fridge would you like a snack from? Please enter the corresonding ID from below list"
     show_all_fridges
@@ -110,8 +123,7 @@ def drink_whole_drink()
     Drink.find(drink_to_drink).destroy
     puts "You've drunk all of #{drink_to_drink}"
 end
-
-    
+  
 
 my_str = %q(
     Welcome to the Fridge Tracker
@@ -137,19 +149,21 @@ if user_descision == 1
     show_all_fridges
     elsif user_descision == 2
         add_fridge
-        elsif user_descision == 3
-            delete_fridge
-            elsif user_descision == 4
-                view_food_in_fridge
-            elsif user_descision == 5
-                add_food_to_fridge
-            elsif user_descision == 6
-                eat_a_food
-                elsif user_descision == 7
-            view_drinks_in_fridge
-        elsif user_descision == 9
-            drink_part_of_drink
-        elsif user_descision == 10
-            drink_whole_drink
+    elsif user_descision == 3
+        delete_fridge
+    elsif user_descision == 4
+        view_food_in_fridge
+    elsif user_descision == 5
+        add_food_to_fridge
+    elsif user_descision == 6
+        eat_a_food
+    elsif user_descision == 7
+        view_drinks_in_fridge
+    elsif user_descision == 8
+        add_drink_to_fridge
+    elsif user_descision == 9
+        drink_part_of_drink
+    elsif user_descision == 10
+        drink_whole_drink
     end
     
